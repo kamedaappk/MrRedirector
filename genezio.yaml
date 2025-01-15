@@ -1,0 +1,12 @@
+frontend:
+    path: .
+    publish: dist
+    scripts:
+        build:
+            - npm run build
+        deploy:
+            - npm install
+    subdomain: mrredirector01
+name: mrredirector01
+region: us-east-1
+yamlVersion: 2
