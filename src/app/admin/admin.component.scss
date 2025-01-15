@@ -1,5 +1,5 @@
-/* src/app/home/home.component.scss */
-.home-container {
+/* src/app/admin/admin.component.scss */
+.admin-dashboard-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -16,7 +16,7 @@
     }
   }
   
-  .public-urls-heading {
+  .admin-dashboard-heading {
     font-size: 2rem;
     color: #333;
     margin-bottom: 20px;
@@ -31,7 +31,7 @@
     }
   }
   
-  .add-url-button {
+  .go-home-button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -52,20 +52,6 @@
     }
   }
   
-  .info-message {
-    color: #28a745;
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .error-message {
-    color: #dc3545;
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
   .url-list {
     list-style: none;
     padding: 0;
@@ -73,22 +59,19 @@
   }
   
   .url-list-item {
-    background-color: #fff;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-  
-    &:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-  }
-  
-  .url-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+  
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
   
     @media (max-width: 480px) {
       flex-direction: column;
@@ -97,58 +80,13 @@
     }
   }
   
-  .url-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .url-id {
-    font-size: 0.9rem;
-    color: #555;
-    font-weight: bold;
-  }
-  
-  .url-link {
+  .url-details {
     font-size: 1rem;
-    color: #007bff;
-    word-break: break-all;
-  
-    a {
-      color: inherit;
-      text-decoration: none;
-  
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-  
-  .url-stats {
-    display: flex;
-    gap: 10px;
-    font-size: 0.8rem;
     color: #555;
+    flex: 1;
   
-    .redirect-count {
-      font-weight: bold;
-    }
-  
-    .url-status {
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: bold;
-  
-      &.public {
-        background-color: #d4edda;
-        color: #155724;
-      }
-  
-      &.private {
-        background-color: #f8d7da;
-        color: #721c24;
-      }
+    @media (max-width: 480px) {
+      width: 100%;
     }
   }
   
@@ -162,8 +100,6 @@
     }
   }
   
-  .share-with-qr,
-  .copy-to-clipboard,
   .edit-button,
   .delete-button {
     padding: 8px 16px;
@@ -175,24 +111,6 @@
   
     @media (max-width: 480px) {
       width: 100%;
-    }
-  }
-  
-  .share-with-qr {
-    background-color: #17a2b8;
-    color: #fff;
-  
-    &:hover {
-      background-color: #138496;
-    }
-  }
-  
-  .copy-to-clipboard {
-    background-color: #6c757d;
-    color: #fff;
-  
-    &:hover {
-      background-color: #5a6268;
     }
   }
   
@@ -254,52 +172,5 @@
   
     @media (max-width: 480px) {
       width: 100%;
-    }
-  }
-  
-  /* QR Code Popup Styling */
-  .qr-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .qr-popup-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .qr-popup-heading {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .qr-canvas {
-    margin-bottom: 20px;
-  }
-  
-  .close-qr-popup-button {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: #c82333;
     }
   }

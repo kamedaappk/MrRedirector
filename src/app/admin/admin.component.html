@@ -1,0 +1,22 @@
+<!-- src/app/admin/admin.component.html -->
+<div class="admin-dashboard-container">
+    <h2 class="admin-dashboard-heading">Admin Dashboard</h2>
+    <button class="go-home-button" (click)="goToHome()">Go Home</button>
+  
+    <ul class="url-list">
+      <li *ngFor="let url of urls$ | async" class="url-list-item">
+        <span class="url-details">
+          {{ url.id }} - {{ url.link }} (Redirects: {{ url.redirectCount }}) - {{ url.isPublic ? 'Public' : 'Private' }}
+        </span>
+        <div class="url-actions">
+          <button class="edit-button" (click)="editUrl(url.id)">Edit</button>
+          <button class="delete-button" (click)="deleteUrl(url.id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  
+    <div class="import-export-actions">
+      <button class="export-button" (click)="exportUrls()">Export URLs</button>
+      <input class="import-input" type="file" (change)="importUrls($event)" />
+    </div>
+  </div>

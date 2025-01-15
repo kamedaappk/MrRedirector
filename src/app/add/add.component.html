@@ -1,24 +1,43 @@
 <!-- src/app/add/add.component.html -->
-<h2>Add URL</h2>
-<form (ngSubmit)="onSubmit()">
-  <label>
+<div class="add-url-container">
+  <h2 class="add-url-heading">Add URL</h2>
+  <button class="go-home-button" (click)="goToHome()">Go Home</button>
+
+  <form class="add-url-form" (ngSubmit)="onSubmit()">
+    <label class="auto-generate-label">
+      <input
+        class="auto-generate-checkbox"
+        type="checkbox"
+        [(ngModel)]="autoGenerateId"
+        name="autoGenerateId"
+        (change)="onAutoGenerateChange()"
+      />
+      Auto-generate ID
+    </label>
+
     <input
-      type="checkbox"
-      [(ngModel)]="autoGenerateId"
-      name="autoGenerateId"
-      (change)="onAutoGenerateChange()"
+      *ngIf="!autoGenerateId"
+      class="id-input"
+      [(ngModel)]="id"
+      name="id"
+      placeholder="Number"
+      required
     />
-    Auto-generate ID
-  </label>
-  <input
-    *ngIf="!autoGenerateId"
-    [(ngModel)]="id"
-    name="id"
-    placeholder="Number"
-    required
-  />
-  <p *ngIf="autoGenerateId && id">Auto-generated ID: {{ id }}</p>
-  <input [(ngModel)]="link" name="link" placeholder="URL" required />
-  <button type="submit">Add</button>
-</form>
-<p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+    <p *ngIf="autoGenerateId && id" class="auto-generated-id-message">
+      Auto-generated ID: {{ id }}
+    </p>
+
+    <input
+      class="url-input"
+      [(ngModel)]="link"
+      name="link"
+      placeholder="URL"
+      required
+    />
+
+    <button class="submit-button" type="submit">Add</button>
+  </form>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>

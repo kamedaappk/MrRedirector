@@ -1,1 +1,42 @@
-<p>edit works!</p>
+<!-- src/app/edit/edit.component.html -->
+<div class="edit-url-container">
+    <h2 class="edit-url-heading">Edit URL</h2>
+    <button class="go-home-button" (click)="goToHome()">Go Home</button>
+  
+    <form class="edit-url-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="form-label">
+          Id: {{ url.id }}
+        </label>
+      </div>
+  
+      <div class="form-group">
+        <label class="form-label">
+          URL:
+          <input
+            class="url-input"
+            [(ngModel)]="url.link"
+            name="link"
+            placeholder="URL"
+            required
+          />
+        </label>
+      </div>
+  
+      <div class="form-group">
+        <label class="form-label">
+          <input
+            class="public-checkbox"
+            type="checkbox"
+            [(ngModel)]="url.isPublic"
+            name="isPublic"
+          />
+          Public
+        </label>
+      </div>
+  
+      <button class="save-button" type="submit">Save</button>
+    </form>
+  
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  </div>

@@ -9,4 +9,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'MRRedirector';
+  version: string= "20250115-Base-a"
+
 }

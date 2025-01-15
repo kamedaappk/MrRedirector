@@ -1,0 +1,52 @@
+/* Styling for the screen overlay */
+.screen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.5s ease-in-out;
+  
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+      padding: 15px;
+    }
+  
+    @media (max-width: 480px) {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+  
+  /* Animation for the overlay */
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Ensure the router-outlet content is properly spaced */
+  router-outlet {
+    display: block;
+    margin-top: 80px; /* Adjust based on the overlay height */
+    padding: 20px;
+  
+    @media (max-width: 768px) {
+      margin-top: 70px;
+      padding: 15px;
+    }
+  
+    @media (max-width: 480px) {
+      margin-top: 60px;
+      padding: 10px;
+    }
+  }

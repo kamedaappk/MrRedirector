@@ -1,9 +1,50 @@
 <!-- src/app/home/home.component.html -->
-<h2>Public URLs</h2>
-<ul>
-  <li *ngFor="let url of urls$ | async">
-    {{ url.id }} - {{ url.link }} (Redirects: {{ url.redirectCount }})
-  </li>
-</ul>
-<button (click)="exportUrls()">Export URLs</button>
-<input type="file" (change)="importUrls($event)" />
+<div class="home-container">
+  <h2 class="public-urls-heading">Public URLs</h2>
+  <button class="add-url-button" (click)="goToAdd()">Add URL</button>
+
+  <!-- Messages -->
+  <p *ngIf="infoMessage" class="info-message">{{ infoMessage }}</p>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+  <!-- URL List -->
+  <ul class="url-list">
+    <li *ngFor="let url of urls$ | async" class="url-list-item">
+      <div class="url-details">
+        <div class="url-info">
+          <div class="url-id">ID: {{ url.id }}</div>
+          <div class="url-link">
+            <a [href]="url.link" target="_blank">{{ url.link }}</a>
+          </div>
+          <div class="url-stats">
+            <span class="redirect-count">Redirects: {{ url.redirectCount }}</span>
+            <span class="url-status" [ngClass]="{ 'public': url.isPublic, 'private': !url.isPublic }">
+              {{ url.isPublic ? 'Public' : 'Private' }}
+            </span>
+          </div>
+        </div>
+        <div class="url-actions">
+          <button class="share-with-qr" (click)="showQRCode(url.id)">QR Code</button>
+          <button class="copy-to-clipboard" (click)="copyLink(url.id)">Copy</button>
+          <button class="delete-button" (click)="deleteUrl(url.id)">Delete</button>
+          <button class="edit-button" (click)="editUrl(url.id)">Edit</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Import/Export Actions -->
+  <div class="import-export-actions">
+    <button class="export-button" (click)="exportUrls()">Export URLs</button>
+    <input class="import-input" type="file" (change)="importUrls($event)" />
+  </div>
+</div>
+
+<!-- QR Code Popup -->
+<div *ngIf="showQRPopup" class="qr-popup">
+  <div class="qr-popup-content">
+    <h3 class="qr-popup-heading">Scan the QR Code</h3>
+    <canvas class="qr-canvas" #qrCanvas></canvas>
+    <button class="close-qr-popup-button" (click)="closeQRPopup()">Close</button>
+  </div>
+</div>

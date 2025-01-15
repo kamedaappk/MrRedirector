@@ -2,7 +2,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Url } from './models';
 import { loadUrlsFromStorage, saveUrlsToStorage } from '../utils/storage.utils';
-import { addUrl, editUrl, incrementRedirectCount } from './urls.action';
+import { addUrl, deleteUrl, editUrl, incrementRedirectCount } from './urls.action';
 
 
 export interface UrlState {
@@ -16,8 +16,10 @@ export const initialState: UrlState = {
 export const urlReducer = createReducer(
   initialState,
   on(addUrl, (state, { url }) => {
+    console.log("addUrl", url);
     const newState = { ...state, urls: [...state.urls, url] };
     saveUrlsToStorage(newState.urls); // Save to localStorage
+    console.log("newState", newState);
     return newState;
   }),
   on(editUrl, (state, { url }) => {
@@ -36,6 +38,14 @@ export const urlReducer = createReducer(
       ),
     };
     saveUrlsToStorage(newState.urls); // Save to localStorage
+    return newState;
+  }),
+  on(deleteUrl, (state, { id }) => {
+    const newState = {
+      ...state,
+      urls: state.urls.filter((u) => u.id !== id), // Remove the URL with the matching ID
+    };
+    saveUrlsToStorage(newState.urls);
     return newState;
   })
 );
