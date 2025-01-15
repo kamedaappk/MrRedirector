@@ -1,0 +1,24 @@
+<!-- src/app/add/add.component.html -->
+<h2>Add URL</h2>
+<form (ngSubmit)="onSubmit()">
+  <label>
+    <input
+      type="checkbox"
+      [(ngModel)]="autoGenerateId"
+      name="autoGenerateId"
+      (change)="onAutoGenerateChange()"
+    />
+    Auto-generate ID
+  </label>
+  <input
+    *ngIf="!autoGenerateId"
+    [(ngModel)]="id"
+    name="id"
+    placeholder="Number"
+    required
+  />
+  <p *ngIf="autoGenerateId && id">Auto-generated ID: {{ id }}</p>
+  <input [(ngModel)]="link" name="link" placeholder="URL" required />
+  <button type="submit">Add</button>
+</form>
+<p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
